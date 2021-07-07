@@ -1,0 +1,61 @@
+.nav-header {
+  position: sticky;
+  margin-top: 0;
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.list-item {
+  float: right;
+}
+
+.search {
+  padding:0;
+  margin-top:0;
+  overflow: hidden;
+}
+
+.list-item .a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.list-item Searcher {
+  display:block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+
+.a:hover {
+  background-color: #111;
+}
+
+@media (max-width: 300px) {
+  .nav>.nav-links {
+    position: sticky;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav>.nav-links>.a {
+    display: block;
+    width: 100%;
+  }
+}

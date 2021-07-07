@@ -1,0 +1,126 @@
+
+.card-item {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  margin: 15px;
+  background-color: #f7f5ec;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-item .card-background {
+  display: inline-block;
+  height: 130px;
+  width: 130px;
+  margin-bottom: 50px;
+  z-index: 0;
+  position: relative;
+}
+
+.card-item .card-background::before {
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  background-color: #1369ce;
+  position: absolute;
+  bottom: 135%;
+  right: 0;
+  left: 0;
+  opacity: 0.9;
+  transform: scale(3);
+  transition: all 0.3s linear 0s;
+}
+
+.card-item:hover .card-background::before {
+  height: 100%;
+}
+
+.card-item .card-background::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #1369ce;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.card-item .card-background img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: all 0.9s ease 0s;
+}
+
+.card-item:hover .card-background img {
+  box-shadow: 0 0 0 14px #f7f5ec;
+  transform: scale(0.7);
+}
+
+.card-item .card-title {
+  display:block;
+  font-size: 18px;
+  color: #4e5052;
+  text-transform: capitalize;
+}
+
+.card-item .card-text {
+  padding: 0;
+  margin: 0;
+  background-color: #1369ce;
+  position:relative;
+  bottom: -150px;
+  left: 0;
+  transition: all 0.5s ease 0s;
+}
+
+.card-item:hover .card-text {
+  bottom: 0;
+}
+
+
+
+.card-item .card-text div {
+  display: block;
+  padding: 10px;
+  font-size: 17px;
+  color: white;
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+.card-item .card-text div:hover {
+  color: #1369ce;
+  background-color: #f7f5ec;
+}
+
+@media screen and ( min-width:30em) {
+  .card-row {
+    flex: 0 1 calc(33% - 1em);
+  }
+}
+
+@media screen and ( min-width:48em) {
+  .card-row {
+    flex: 0 1 calc(25% - 1em);
+  }
+}
+
+@media screen and ( min-width:62em) {
+  .card-row {
+    flex: 0 1 calc(20% - 1em);
+  }
+  h1 {
+    font-size: 2em;
+  }
+}
