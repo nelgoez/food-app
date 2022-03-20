@@ -1,3 +1,4 @@
 {
-    "s-maxage": 0
+    "Origin Control": "Off",
+    "s-maxage": "0"
 }
