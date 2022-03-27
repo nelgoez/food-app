@@ -3,20 +3,22 @@ import { Link } from 'react-router-dom';
 import './Recipe.css'
 
 
-export default function Recipe({ recipe }) {
+export default function Recipe({ recipe, onClose }) {
     return (
-        <div key={recipe.id} className='card-item'>
-            <div className="card-background" key={`${recipe.id}-img`} >
-                <img src={recipe.image ? recipe.image : 'https://wallpaperaccess.com/full/1412206.jpg'} alt='imagen no encontrada' />
-            </div>
-            <div className='card-content' key={`${recipe.id}-content`}>
-                <h2 className='card-title'>{recipe.title}</h2>
-                <h4>Diets: </h4>
-                {recipe.diets.length ?
-                    recipe.diets.map((d, index) => <p className='card-text' key={`${recipe.id}-diets-${index}`}>{d}</p>) :
-                    <div className='card-text' key={`${recipe.id}-diets`}>ALL</div>}
-                <div className='actions' key={`${recipe.id}-details`}>
-                    <Link to={`/recipe/${recipe.id}`} className='read'>Read</Link>
+        <div className='hero-section'>
+            <div key={recipe.id} className='card-item'>
+                <div className="card-background" >
+                    <img src={recipe.image} alt='imagen no encontrada' />
+                </div>
+                <div className='card'>
+                    <div className='card-content'>
+                        <h2 className='card-title'>{recipe.title}</h2>
+                        <h4>Diets: </h4>
+                        {recipe.diets.length ? recipe.diets.map(d => <div className='card-text'>{d}</div>) : <div className='card-text'>ALL</div>}
+                        <div className='actions'>
+                            <Link to={`/recipe/${recipe.id}`} className='read'>Read</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,15 +1,11 @@
 .App {
-  display:flex;
   text-align: center;
-  justify-content: center;
+  display:flex;
 }
 
 .row {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: space-around;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -19,13 +15,13 @@
   pointer-events: none;
 }
 
-.header {
+.App-header {
   background-color: #023318;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(136, 22, 22);
 }

@@ -12,15 +12,13 @@ form {
   margin-top: 35px;
 }
 
+.error {
+  border: 1px solid red;
+}
+
 .row-input {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.row-input-diets {
-  display: flex;
-  flex-direction: row;
   margin-bottom: 20px;
 }
 
@@ -37,7 +35,6 @@ form {
 }
 
 .error-message__visible {
-  border:red;
   display: block;
   font-size: 0.75rem;
   margin: 0;
@@ -48,7 +45,7 @@ form {
   justify-content: center;
 }
 
-.submit {
+button {
   padding: 10px;
   width: 100px;
   border-radius: 4px;
@@ -59,10 +56,6 @@ form {
   cursor: pointer;
 }
 
-input:disabled {
+button:disabled {
   background-color: #80b0fc;
-}
-
-.error {
-  border:solid tomato;
 }

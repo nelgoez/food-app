@@ -65,8 +65,8 @@
 
 
 .card-media {
-  height:50%;
-  width: 50%;
+  height: min-content;
+  width: min-content;
   float:left;
 }
 

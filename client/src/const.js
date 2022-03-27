@@ -1,12 +1,15 @@
-const dietTypes = [
-    "gluten free",
-    "ketogenic",
-    "vegetarian",
-    "lacto ovo vegetarian",
-    "vegan",
-    "pescetarian",
-    "paleo",
-    "primal",
-    "whole30"
+const dietTypes =[
+    "Gluten Free",
+    "Ketogenic",
+    "Vegetarian",
+    "Lacto-Vegetarian",
+    "Ovo-Vegetarian",
+    "Vegan",
+    "Pescetarian",
+    "Paleo",
+    "Primal",
+    "Whole30"
 ]
-export default dietTypes
+export default {
+    dietTypes
+};

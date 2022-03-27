@@ -1,62 +1,56 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { getRecipes, getDiets } from "../../actions"
-
+import { getRecipes } from "../../actions"
+import Recipe from '../Recipe/Recipe'
 import './Searcher.css';
 
 
 const Searcher = function (props) {
 
+  const [state, setState] = React.useState({ name: "" })
 
-  const [onSearch, setOnSearch] = React.useState({ name: "" })
-
-  useEffect(() => {
-    props.getRecipes(onSearch.name);
-    /*eslint-disable-next-line*/
-  }, [])
-  
-  useEffect(() => {
-    props.getDiets();
-  }, [props.recipes])
-  
-  
   function handleChange(e) {
-    setOnSearch({ name: e.target.value });
+    setState({ name: e.target.value });
   }
-  
   function handleSubmit(e) {
     e.preventDefault();
-    props.getRecipes(onSearch.name)
-    setOnSearch({ name: '' })
+    props.getRecipes(state.name)
+    setState('')
   }
-
-
 
   return (
     <div className='cnt'>
       <div className='box'>
         <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
-          <input
-            placeholder='Buscar...'
-            className='input'
-            type="text"
-            id="name"
-            autoComplete="off"
-            value={onSearch.name}
-            onChange={(e) => handleChange(e)}
-          />
-          <button id='search' type="submit" href='#'>BUSCAR</button>
+            <input
+              placeholder='Buscar...'
+              className='input'
+              type="text"
+              id="name"
+              autoComplete="off"
+              value={state.name}
+              onChange={(e) => handleChange(e)}
+            />
+            <button id='btn' type="submit" href='#'>BUSCAR</button>
         </form>
+      </div>
+      <div className='results'>
+          {props.recipes && props.recipes.map(recipe => <Recipe recipe={recipe} />)}
       </div>
     </div>
   )
 }
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    getRecipes: name => dispatch(getRecipes(name)),
-    getDiets: () => dispatch(getDiets())
+    recipes: state.recipes
   };
 }
 
-export default connect(null, mapDispatchToProps)(Searcher);
+function mapDispatchToProps(dispatch) {
+  return {
+    getRecipes: name => dispatch(getRecipes(name))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Searcher);

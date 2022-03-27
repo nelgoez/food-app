@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
+import { getDiets } from '../../actions/index'
 import './Diets.css'
 
 export function Diets(props) {
+
+    useEffect(() => {
+        props.getDiets()
+    }, [])
 
     return (
         <div className='diet-container' key='diets'>
@@ -25,5 +30,10 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getDiets: () => dispatch(getDiets())
+    }
+}
 
-export default connect(mapStateToProps, null)(Diets)
+export default connect(mapStateToProps, mapDispatchToProps)(Diets)

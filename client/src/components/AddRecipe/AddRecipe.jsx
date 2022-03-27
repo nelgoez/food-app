@@ -1,142 +1,218 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addRecipe, getDiets } from '../../actions/index';
+import { addRecipe } from '../../actions/index';
+import dietTypes from '../../const'
 import './AddRecipe.css'
 
 
-export const AddRecipe = (props) => {
+export function AddRecipe(props) {
 
-useEffect(()=>{
-    props.getDiets()
-    },[])
-
-    const [recipe, SetRecipe] = useState({
+    const [recipe, setRecipe] = useState({
         title: '',
+        image: '',
         diets: [],
         summary: '',
         aggregateLikes: 0,
         healthScore: 0,
         instructions: '',
-    });
-
-    const [errors, SetErrors] = useState({});
+        filled: {
+            title: false,
+            diets: false,
+            summary: false,
+            instructions: false
+        },
+        errors: {
+            required: {
+                title: false,
+                diets: false,
+                summary: false,
+                instructions: false
+            },
+            valid: {
+                title: false,
+                diets: false,
+                summary: false,
+                instructions: false
+            }
+        }
+    })
 
 
     function handleChange(e) {
         const target = e.target
-        const { name, value, checked } = target;
-        let newState = value
-        if (name === 'diets') {
-            newState = checked ? [...diets, value] : diets.filter(d => d !== value)
-        }
-        SetRecipe({
-            ...recipe, [name]: newState,
+        const { prop, value } = target;
+        setRecipe({ [prop]: [value] });
+        const errors = {
+            required: { ...recipe.errors.required, [prop]: false }
+        };
+        setRecipe({
+            [prop]: value,
+            errors: { ...recipe.errors, ...errors }
         });
-        validate(name, newState)
-    }
-
-    function handleBlur(e) {
-        const { target } = e;
-        const { name, value } = target;
-        validate(name, value)
-    }
-
-    function validate(name, value) {
-        if (value.length) SetErrors({});
-        else SetErrors({ ...errors, [name]: `${name} is required` })
-        return errors;
     }
 
     function handleSubmit(e) {
-        e.preventDefault();
-        props.addRecipe(recipe)
-        props.history.push('/home')
+        isFormInvalid() ?
+            props.addRecipe(recipe) :
+            alert('Fill the fields')
+            e.preventDefault();
     }
 
 
-    const { title, diets, summary, instructions, aggregateLikes, healthScore } = recipe;
+    function handleBlur(e) {
+        const field = e.target.name;
+        setRecipe({
+            filled: { ...recipe.filled, [field]: true }
+        });
+        validate(e);
+    }
+
+    function validate(e) {
+        const target = e.target;
+        const { value, name } = target;
+
+        if (value.trim().length === 0) {
+            const errors = {
+                required: { ...recipe.errors.required, [name]: true }
+            };
+
+            setRecipe({
+                errors: { ...recipe.errors, ...errors }
+            });
+            return;
+        }
+
+        if (name === 'diets') {
+            validateDiets(value);
+        }
+    }
+
+    function validateDiets(diets) {
+        const DietsIsValid = diets.every(d => dietTypes.includes(d));
+        const errors = {
+            valid: { ...recipe.errors.valid, diets: DietsIsValid }
+        };
+
+        setRecipe({
+            errors: { ...recipe.errors, ...errors }
+        });
+    }
+
+    function hasError(field) {
+        return (recipe.errors.required[field] || !recipe.errors.valid[field]) && recipe.filled[field];
+    }
+
+    function isFormInvalid() {
+        const { title, diets, summary, instructions, errors } = recipe;
+        const { required, valid } = errors;
+        const isSomeFieldRequired = Object.keys(required).some(error => required[error]);
+        const isSomeFieldInvalid = Object.keys(valid).some(error => !valid[error]);
+
+        return isSomeFieldInvalid || isSomeFieldRequired;
+    }
+
+    function displayError(field) {
+        const { required, valid } = recipe.errors;
+        const errorMessage = `Field ${field} is `;
+
+        if (required[field]) {
+            return `${errorMessage} required`;
+        }
+
+        if (!valid[field]) {
+            return `${errorMessage} not valid`;
+        }
+    }
 
     return (
         <div className='root'>
             <h1>Add your Recipe</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <b>Name:</b>
+                    Name:
             </label>
                 <div className="row-input">
                     <input
                         type="text"
-                        className={errors.title ? 'error' : ''}
                         onBlur={handleBlur}
-                        name="title"
-                        value={title}
+                        className={hasError('title') ? 'error' : ''}
+                        name='title'
+                        value={recipe.title}
                         onChange={handleChange} />
-                    {errors.title && <p className={'error-message__visible'}>{errors.title}</p>}
+                    <p className={hasError('title') ? 'error-message__visible' : 'error-message'}>
+                        {displayError('title')}
+                    </p>
                 </div>
-                <div className="row-input-diets">
+                <div className="row-input">
                     <label>
-                        <b>Diets:</b>
+                        Image Source:
             </label>
-                    {props.diets.map((d, i) => <span>
-                        <label>
-                            {d.diet}
-                            </label>
-                            <input type="checkbox"
-                        className={errors.diets ? 'error' : 'diets'}
-                        name='diets'
-                        value={d.diet}
-                        key={i}
-                        onChange={handleChange} />
-                    </span>)}
-                </div>
-                <label>
-                    <b>Summary:</b>
-            </label>
-                <div className="row-input">
-                    <input
-                        type="text"
-                        className={errors.summary ? 'error' : ''}
+                    <input type="text"
                         onBlur={handleBlur}
-                        name="summary"
-                        value={summary}
+                        className={hasError('image') ? 'error' : ''}
+                        name='image'
+                        value={recipe.image}
                         onChange={handleChange} />
-                    {errors.summary && <p className={'error-message__visible'}>{errors.summary}</p>}
+                    <p className={hasError('image') ? 'error-message__visible' : 'error-message'}>
+                        {displayError('image')}
+                    </p>
                 </div>
-                <label>
-                    <b>Instructions:</b>
-            </label>
                 <div className="row-input">
-                    <input
-                        type="text"
-                        className={errors.instructions ? 'error' : ''}
-                        name="instructions"
-                        value={instructions}
+                    <label>
+                        Diets:
+            </label>
+                    <input type="text"
+                        onBlur={handleBlur}
+                        className={hasError('diets') ? 'error' : ''}
+                        name='diets'
+                        value={recipe.diets}
                         onChange={handleChange} />
+                    <p className={hasError('diets') ? 'error-message__visible' : 'error-message'}>
+                        {displayError('diets')}
+                    </p>
                 </div>
-                <label>
-                    aggregateLikes:
-            </label>
                 <div className="row-input">
-                    <input
-                        type="number"
-                        className={errors.aggregateLikes ? 'error' : ''}
-                        name="aggregateLikes"
-                        value={aggregateLikes}
+                    <label>
+                        Summary:
+            </label>
+                    <input type="text"
+                        onBlur={handleBlur}
+                        className={hasError('summary') ? 'error' : ''}
+                        name='summary'
+                        value={recipe.summary}
                         onChange={handleChange} />
+                    <p className={hasError('summary') ? 'error-message__visible' : 'error-message'}>
+                        {displayError('summary')}
+                    </p>
+                </div >
+                <div className="row-input">
+                    <label>
+                        Instructions:
+            </label>
+                    <input type="text"
+                        name='instructions'
+                        onBlur={handleBlur}
+                        className={hasError('instructions') ? 'error' : ''}
+                        value={recipe.instructions}
+                        onChange={handleChange} />
+                    <p className={hasError('instructions') ? 'error-message__visible' : 'error-message'}>
+                        {displayError('instructions')}
+                    </p>
                 </div>
-                <label>
-                   <b>healthScore:</b>
-            </label>
                 <div className="row-input">
-                    <input
-                        type="number"
-                        className={errors.healthScore ? 'error' : ''}
-                        name="healthScore"
-                        value={healthScore}
-                        onChange={handleChange} />
+                    <label>
+                        Likes:
+            </label>
+                    <input type="number" name='aggregateLikes' value={recipe.aggregateLikes} onChange={handleChange} />
+                </div>
+                <div className="row-input">
+                    <label>
+                        health Score:
+            </label>
+                    <input type="number" name='healthScore' value={recipe.healthScore} onChange={handleChange} />
                 </div>
                 <div className="submit-button-container">
-                    <input className='submit' type="submit" value="Submit" disabled={errors.title} />
+                    <input type="submit" value="Submit" disabled={isFormInvalid()} />
                 </div>
             </form>
         </div>
@@ -144,20 +220,12 @@ useEffect(()=>{
 
 }
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         addRecipe: (recipe) => {
             dispatch(addRecipe(recipe))
-        },
-        getDiets: () => dispatch(getDiets())
+        }
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        diets: state.diets
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe)
+export default connect(null, mapDispatchToProps)(AddRecipe)

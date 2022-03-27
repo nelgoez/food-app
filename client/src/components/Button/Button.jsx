@@ -15,7 +15,7 @@ export default function Button() {
     if (nav) return <Redirect to={ref} />
     
     return (
-        <div className='boton-container'>
+        <div className='btn'>
             <button className='boton' onClick={handleClick}>Home</button>
         </div>
     )
