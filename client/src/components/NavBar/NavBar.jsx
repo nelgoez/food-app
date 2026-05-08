@@ -9,7 +9,7 @@ export default function NavBar() {
             <nav className='nav'>
                 <ul className="nav-links">
                     <li className="list-item">
-                        <NavLink exact to="/home" className='a' activeClassName='active' >Home</NavLink>
+                        <NavLink exact to="/" className='a' activeClassName='active' >Home</NavLink>
                     </li>
                     <li className="list-item">
                         <NavLink exact to="/types" className='a' activeClassName='active' >Diet Types</NavLink>
