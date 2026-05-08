@@ -16,7 +16,14 @@ export default function Button() {
     
     return (
         <div className='btn'>
-            <button className='boton' onClick={handleClick}>Home</button>
+            <div className='hero-content'>
+                <h1 className='hero-title'>Recipe Finder</h1>
+                <p className='hero-subtitle'>
+                    Discover thousands of recipes from around the world<br />
+                    Search by ingredients, explore diet types, and save your favorites
+                </p>
+                <button className='boton' onClick={handleClick}>Start Cooking →</button>
+            </div>
         </div>
     )
 }
