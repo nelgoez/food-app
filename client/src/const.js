@@ -10,6 +10,4 @@ const dietTypes =[
     "Primal",
     "Whole30"
 ]
-export default {
-    dietTypes
-};
+export default dietTypes;
