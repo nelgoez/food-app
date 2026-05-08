@@ -103,7 +103,7 @@ export function AddRecipe(props) {
     }
 
     function isFormInvalid() {
-        const { title, diets, summary, instructions, errors } = recipe;
+        const { errors } = recipe;
         const { required, valid } = errors;
         const isSomeFieldRequired = Object.keys(required).some(error => required[error]);
         const isSomeFieldInvalid = Object.keys(valid).some(error => !valid[error]);

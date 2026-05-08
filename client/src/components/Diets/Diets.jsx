@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { getDiets } from '../../actions/index'
 import './Diets.css'
 
-export function Diets(props) {
+export function Diets({ diets, getDiets }) {
 
     useEffect(() => {
-        props.getDiets()
-    }, [])
+        getDiets()
+    }, [getDiets])
 
     return (
         <div className='diet-container' key='diets'>
             <label className='label'>Diets: </label>
             <ul className='list'>
-                {props.diets.map((d, i) => {
+                {diets.map((d, i) => {
                     let { diet } = d
                     return (
                         <li key={`${i}`} className='item'>{diet}</li>
