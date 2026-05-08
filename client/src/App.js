@@ -5,10 +5,12 @@ import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import NavBar  from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
 import AddRecipe from './components/AddRecipe/AddRecipe'
+import Background from './components/Background/Background'
 
 function App() {
   return (
     <React.Fragment>
+      <Background />
       <NavBar />
       <Route exact path="/" component={ Home }/>
       <Route path="/addRecipe" component={ AddRecipe } />
