@@ -10,6 +10,9 @@ function Background({ recipes }) {
     } else {
       document.body.style.backgroundImage =
         `linear-gradient(rgba(15, 12, 41, 0.88), rgba(26, 26, 46, 0.92)), url(/cooking.png)`
+      document.body.style.backgroundSize = 'cover'
+      document.body.style.backgroundAttachment = 'fixed'
+      document.body.style.backgroundPosition = 'center'
     }
     document.body.style.backgroundSize = 'cover'
     document.body.style.backgroundAttachment = 'fixed'
