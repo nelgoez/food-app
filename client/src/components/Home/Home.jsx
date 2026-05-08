@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import Searcher from '../Searcher/Searcher'
 import './Home.css'
 
-export default function Home() {
+function Home({ hasResults }) {
   const [showSearch, setShowSearch] = useState(false)
 
   const handleStart = () => {
@@ -10,8 +11,8 @@ export default function Home() {
   }
 
   return (
-    <div className="home">
-      <section className="home-hero">
+    <div className={`home ${hasResults ? 'has-results' : ''}`}>
+      <section className={`home-hero ${hasResults ? 'collapsed' : ''}`}>
         <div className='hero-content'>
           <h1 className='hero-title'>Recipe Finder</h1>
           <p className='hero-subtitle'>
@@ -29,3 +30,11 @@ export default function Home() {
     </div>
   )
 }
+
+function mapStateToProps(state) {
+  return {
+    hasResults: state.recipes && state.recipes.length > 0
+  }
+}
+
+export default connect(mapStateToProps)(Home)

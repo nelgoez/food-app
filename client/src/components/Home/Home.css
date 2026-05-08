@@ -1,5 +1,10 @@
 .home {
   min-height: 100vh;
+  transition: padding 0.4s ease;
+}
+
+.home.has-results {
+  padding-top: 2rem;
 }
 
 .home-hero {
@@ -9,6 +14,17 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 2rem 0;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.home-hero.collapsed {
+  min-height: 0;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hero-content {
@@ -67,5 +83,9 @@
 .search-reveal.visible {
   max-height: 1000px;
   opacity: 1;
-  margin: 0 0 2rem;
+  margin: 2rem auto;
+}
+
+.has-results .search-reveal.visible {
+  max-height: none;
 }

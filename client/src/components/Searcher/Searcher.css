@@ -75,13 +75,13 @@
 }
 
 .results {
-  margin: 2rem auto;
+  margin: 3rem auto 1rem;
   width: 100%;
   max-width: 1200px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
   padding: 0 1rem;
 }
