@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import Diets from "./components/Diets/Diets";
 import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import NavBar  from "./components/NavBar/NavBar";
-import  Searcher from './components/Searcher/Searcher'
 import Home from "./components/Home/Home";
 import AddRecipe from './components/AddRecipe/AddRecipe'
 
