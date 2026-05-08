@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Visual & Accessibility', () => {
-  test('landing button has visible text', async ({ page }) => {
+  test('hero CTA has visible text', async ({ page }) => {
     await page.goto('/')
-    const btn = page.locator('.boton')
+    const btn = page.locator('.hero-cta')
     await expect(btn).toBeVisible()
     const text = await btn.textContent()
     expect(text).toBeTruthy()
   })
 
-  test('all images on search page have alt or role', async ({ page }) => {
-    await page.goto('/home')
+  test('all images have alt or role', async ({ page }) => {
+    await page.goto('/')
     const images = page.locator('img')
     const count = await images.count()
     for (let i = 0; i < count; i++) {
@@ -23,7 +23,7 @@ test.describe('Visual & Accessibility', () => {
     }
   })
 
-  test('landing page renders without console errors', async ({ page }) => {
+  test('page renders without critical console errors', async ({ page }) => {
     const errors: string[] = []
     page.on('console', (msg) => {
       if (msg.type() === 'error') errors.push(msg.text())

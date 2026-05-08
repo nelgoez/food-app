@@ -1,24 +1,28 @@
 import { test, expect } from '@playwright/test'
 
-test.describe('Homepage (Landing)', () => {
-  test('landing page shows the Home button', async ({ page }) => {
+test.describe('Landing Page', () => {
+  test('shows the hero title and CTA', async ({ page }) => {
     await page.goto('/')
-    const btn = page.locator('.boton')
-    await expect(btn).toBeVisible()
-    await expect(btn).toHaveText('Home')
+    const title = page.locator('.hero-title')
+    await expect(title).toBeVisible()
+    await expect(title).toContainText('Recipe Finder')
+    const cta = page.locator('.hero-cta')
+    await expect(cta).toBeVisible()
+    await expect(cta).toContainText('Start Cooking')
   })
 
-  test('landing button navigates to /home on click', async ({ page }) => {
+  test('Start Cooking reveals the search bar', async ({ page }) => {
     await page.goto('/')
-    const btn = page.locator('.boton')
-    await btn.click()
-    await expect(page).toHaveURL(/\/home/)
+    await page.locator('.hero-cta').click()
+    await expect(page.locator('input#name')).toBeVisible()
+    await expect(page.locator('button#btn')).toBeVisible()
   })
 })
 
 test.describe('Search Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/home')
+    await page.goto('/')
+    await page.locator('.hero-cta').click()
   })
 
   test('search input is visible', async ({ page }) => {
@@ -32,7 +36,7 @@ test.describe('Search Page', () => {
   })
 
   test('navbar shows navigation links', async ({ page }) => {
-    const nav = page.locator('.nav-links, nav')
+    const nav = page.locator('nav')
     await expect(nav).toBeVisible()
     const links = nav.locator('a')
     const count = await links.count()
@@ -53,7 +57,7 @@ test.describe('Other Routes', () => {
 
   test('add recipe form has submit button', async ({ page }) => {
     await page.goto('/addRecipe')
-    const submit = page.locator('button[type="submit"]')
+    const submit = page.locator('input[type="submit"]')
     await expect(submit).toBeVisible()
   })
 })
