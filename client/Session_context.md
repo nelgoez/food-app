@@ -57,3 +57,27 @@ CSS overhaul for contrast/readability, Playwright QA suite, and agent docs.
 - `.context/agent-integration.md`
 - `.context/qa-strategy.md`
 - `Session_context.md` (this file)
+
+## Roadmap / Backlog
+
+### UI Improvements (pending)
+- Error/empty state messages when search returns no results
+- Loading spinners while API requests are in flight
+- Toast/alert component for API errors (e.g., backend unreachable)
+- "No diets available" fallback text on `/types`
+- Better cursor/placeholder visibility on search input
+- Handle `setState('')` bug in Searcher (was overwriting object state with string)
+
+### Test Expansion (pending)
+- **Frontend unit tests**: Jest + React Testing Library for components (Searcher, Diets, Recipe, RecipeDetails, AddRecipe, NavBar)
+- **Frontend E2E**: Playwright tests for happy paths + error states (empty results, API failure)
+- **Backend unit tests**: Mocha + Chai for Express routes (mock Spoonacular)
+- **Backend E2E**: Playwright / Supertest against deployed backend endpoints
+- **Integration**: Playwright tests that hit the real deployed backend from the frontend
+- Add `data-testid` attributes to key elements for test resilience
+
+### CI Pipeline (pending)
+- Vercel Preview Deployments for PR branches
+- Run Playwright against Preview URL before merging to `main`
+- Separate test environment (`.env.test` or Vercel Preview env vars)
+- GitHub Actions workflow triggers: lint → unit → build → E2E (Preview) → deploy
