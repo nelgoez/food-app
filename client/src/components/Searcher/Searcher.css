@@ -74,6 +74,38 @@
   background: linear-gradient(135deg, #c53030, #9b2c2c);
 }
 
+.state-msg {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #a0aec0;
+}
+
+.state-msg .empty {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin: 0 0 0.5rem;
+}
+
+.state-msg .hint {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 1rem;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ffd866;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .results {
   margin: 3rem auto 1rem;
   width: 100%;

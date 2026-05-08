@@ -1,45 +1,44 @@
-.diet-container {
-  margin: 10px;
-  align-self: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, #16213e, #1a1a2e);
+.diets-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  border-radius: 12px;
-  width: 220px;
-  padding: 1.5rem 1rem;
-  color: #e0e0e0;
+  align-items: center;
+  padding: 2rem;
+}
+
+.diets-title {
+  font-size: 2rem;
+  color: #ffd866;
+  margin: 0 0 2rem;
   text-align: center;
 }
 
-.diet-container:hover {
-  border-color: #ffd866;
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(255, 216, 102, 0.15);
-}
-
-.label {
-  margin-top: 20px;
-  justify-content: space-around;
+.diet-grid {
   display: flex;
-  flex-direction: column;
-  align-self: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 800px;
+  width: 100%;
 }
 
-.list .item {
-  font-weight: bolder;
-  font-size: 18px;
-  list-style-type: none;
-  padding: 4px 0;
-  color: #a0aec0;
+.diet-card {
+  background: linear-gradient(135deg, #16213e, #1a1a2e);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  min-width: 140px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.list .item:before {
-  content: "•";
-  color: #e53e3e;
-  font-weight: bold;
-  margin-right: 8px;
+.diet-card:hover {
+  border-color: #ffd866;
+  transform: scale(1.05);
+}
+
+.diet-name {
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: capitalize;
 }

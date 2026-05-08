@@ -4,10 +4,10 @@ import { getRecipes } from "../../actions"
 import Recipe from '../Recipe/Recipe'
 import './Searcher.css';
 
-
 const Searcher = function (props) {
 
   const [state, setState] = React.useState({ name: "" })
+  const [searched, setSearched] = React.useState(false)
 
   function handleChange(e) {
     setState({ name: e.target.value });
@@ -15,8 +15,41 @@ const Searcher = function (props) {
   function handleSubmit(e) {
     e.preventDefault();
     if (state.name.trim()) {
+      setSearched(true)
       props.getRecipes(state.name.trim())
     }
+  }
+
+  function renderResults() {
+    if (props.loading) {
+      return (
+        <div className="state-msg">
+          <div className="spinner" />
+          <p>Searching recipes...</p>
+        </div>
+      )
+    }
+
+    if (!searched) {
+      return (
+        <div className="state-msg">
+          <p className="hint">Type an ingredient above and hit BUSCAR to find recipes</p>
+        </div>
+      )
+    }
+
+    if (!props.recipes || props.recipes.length === 0) {
+      return (
+        <div className="state-msg">
+          <p className="empty">No recipes found for "<strong>{state.name}</strong>"</p>
+          <p className="hint">Try a different ingredient or check the spelling</p>
+        </div>
+      )
+    }
+
+    return props.recipes.map((recipe, i) => (
+      <Recipe key={recipe.id || i} recipe={recipe} />
+    ))
   }
 
   return (
@@ -24,7 +57,7 @@ const Searcher = function (props) {
       <div className='box'>
         <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
             <input
-              placeholder='Buscar...'
+              placeholder='Search by ingredient...'
               className='input'
               type="text"
               id="name"
@@ -36,7 +69,7 @@ const Searcher = function (props) {
         </form>
       </div>
       <div className='results'>
-          {props.recipes && props.recipes.map((recipe, i) => <Recipe key={recipe.id || i} recipe={recipe} />)}
+        {renderResults()}
       </div>
     </div>
   )
@@ -44,7 +77,8 @@ const Searcher = function (props) {
 
 function mapStateToProps(state) {
   return {
-    recipes: state.recipes
+    recipes: state.recipes,
+    loading: state.loading
   };
 }
 

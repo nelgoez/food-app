@@ -2,18 +2,22 @@ import {
     GET_RECIPES,
     GET_RECIPE_DETAILS,
     GET_TYPES,
-    ADD_RECIPE
+    ADD_RECIPE,
+    SET_LOADING
 } from '../actions'
 
 const initialState = {
   recipes : [],
   recipeDetails : {},
-  diets : []
+  diets : [],
+  loading : false
 }
-
 
 export function Reducer(state = initialState, action) {
 
+    if (action.type === SET_LOADING) {
+        return { ...state, loading: action.payload }
+    }
     if (action.type === ADD_RECIPE) {
         return {
           ...state,
