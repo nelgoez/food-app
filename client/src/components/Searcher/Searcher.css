@@ -1,82 +1,74 @@
 .cnt {
-  display:flex;
+  display: flex;
   margin: 40px 0;
-  font-family: "Raleway";
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
+  justify-content: center;
 }
 
 .box {
   display: flex;
-  margin: 0 auto 30% ;
-  width: 300px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
   height: 50px;
 }
 
 .form-container {
-  position: absolute;
+  position: relative;
   overflow: hidden;
-  width: 300px;
+  width: 100%;
+  max-width: 400px;
   vertical-align: middle;
   white-space: nowrap;
   border-radius: 10px;
+  display: flex;
 }
 
 .form-container input#name {
-  width: 300px;
+  flex: 1;
   height: 50px;
   background: #2b303b;
-  border: none;
-  font-size: 10pt;
-  float: left;
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  color: #e0e0e0;
   padding-left: 15px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 10px 0 0 10px;
+  outline: none;
 }
 
-.form-container input#name::-webkit-input-placeholder {
+.form-container input#name::placeholder {
   color: #65737e;
 }
 
 .form-container button#btn {
-  -webkit-border-top-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -moz-border-radius-bottomright: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-radius: 0 10px 10px 0;
   border: none;
-  background: #232833;
-  height: 40px;
-  width: 70px;
-  color: #4f5b66;
-  opacity: 1;
-  font-size: 10pt;
-  -webkit-transition: all .55s ease;
-  -moz-transition: all .55s ease;
-  -ms-transition: all .55s ease;
-  -o-transition: all .55s ease;
-  transition: all .55s ease;
+  background: linear-gradient(135deg, #e53e3e, #c53030);
+  height: 50px;
+  width: 90px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0 10px 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.form-container:hover button#btn, .form-container:active button#btn, .form-container:focus button#btn {
-  outline: none;
-  opacity: 1;
-  margin-left: -27%;
-}
-
-.form-container:hover button#btn:hover {
-  background: white;
+.form-container button#btn:hover {
+  background: linear-gradient(135deg, #c53030, #9b2c2c);
 }
 
 .results {
-  margin: 5%;
+  margin: 2rem auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
-

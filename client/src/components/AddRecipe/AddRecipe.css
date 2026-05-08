@@ -1,7 +1,9 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  color: #e0e0e0;
 }
 
 h1, p {
@@ -10,10 +12,12 @@ h1, p {
 
 form {
   margin-top: 35px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .error {
-  border: 1px solid red;
+  border: 1px solid #e53e3e !important;
 }
 
 .row-input {
@@ -22,12 +26,31 @@ form {
   margin-bottom: 20px;
 }
 
-.row-input input {
+.row-input label {
+  font-weight: 600;
+  color: #ffd866;
+  margin-bottom: 4px;
+}
+
+.row-input input,
+.row-input textarea,
+.row-input select {
   margin-top: 10px;
   margin-bottom: 10px;
   outline: none;
-  padding: 5px;
-  line-height: 2;
+  padding: 10px 12px;
+  line-height: 1.5;
+  background: #2b303b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+.row-input input:focus,
+.row-input textarea:focus,
+.row-input select:focus {
+  border-color: #ffd866;
 }
 
 .error-message {
@@ -38,6 +61,7 @@ form {
   display: block;
   font-size: 0.75rem;
   margin: 0;
+  color: #e53e3e;
 }
 
 .submit-button-container {
@@ -45,17 +69,28 @@ form {
   justify-content: center;
 }
 
-button {
-  padding: 10px;
-  width: 100px;
-  border-radius: 4px;
+button[type="submit"] {
+  padding: 12px 32px;
+  width: auto;
+  border-radius: 8px;
   outline: none;
-  background-color: #0c66a1;
+  background: linear-gradient(135deg, #e53e3e, #dd6b20);
   border: none;
   color: white;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
-button:disabled {
-  background-color: #80b0fc;
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #c53030, #c05621);
+  transform: translateY(-1px);
+}
+
+button[type="submit"]:disabled {
+  background: #4a5568;
+  cursor: not-allowed;
+  transform: none;
 }

@@ -4,7 +4,7 @@ export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPE_DETAILS = 'GET_RECIPE_DETAILS';
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const GET_TYPES = 'GET_TYPES';
-const URL = 'https://api-food-app.herokuapp.com'
+const URL = process.env.REACT_APP_API_URL || 'https://api-food-app.herokuapp.com'
 const RECIPES_URL = '/recipes'
 const TYPES_URL = '/types'
 
