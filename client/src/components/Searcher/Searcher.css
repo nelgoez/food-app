@@ -1,26 +1,28 @@
 .cnt {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 40px 0;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
-  justify-content: center;
+  width: 100%;
 }
 
 .box {
   display: flex;
-  margin: 0 auto;
+  justify-content: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   height: 50px;
+  padding: 0 1rem;
 }
 
 .form-container {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 400px;
   vertical-align: middle;
   white-space: nowrap;
   border-radius: 10px;
@@ -32,9 +34,9 @@
   height: 50px;
   background: #2b303b;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 14px;
+  font-size: 15px;
   color: #e0e0e0;
-  padding-left: 15px;
+  padding: 0 15px;
   border-radius: 10px 0 0 10px;
   outline: none;
 }
@@ -47,9 +49,10 @@
   border: none;
   background: linear-gradient(135deg, #e53e3e, #c53030);
   height: 50px;
-  width: 90px;
+  min-width: 100px;
+  padding: 0 1rem;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -64,11 +67,12 @@
 
 .results {
   margin: 2rem auto;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  max-width: 1200px;
   padding: 0 1rem;
 }
