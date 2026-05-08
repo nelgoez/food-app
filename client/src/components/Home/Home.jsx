@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <section className="hero-section">
+      <section className="home-hero">
         <div className='hero-content'>
           <h1 className='hero-title'>Recipe Finder</h1>
           <p className='hero-subtitle'>
