@@ -1,12 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import Searcher from '../Searcher/Searcher'
 import './Home.css'
 
 export default function Home() {
-  const searchRef = useRef(null)
+  const [showSearch, setShowSearch] = useState(false)
 
   const handleStart = () => {
-    searchRef.current?.scrollIntoView({ behavior: 'smooth' })
+    setShowSearch(true)
   }
 
   return (
@@ -23,7 +23,7 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <div ref={searchRef}>
+      <div className={`search-reveal ${showSearch ? 'visible' : ''}`}>
         <Searcher />
       </div>
     </div>
