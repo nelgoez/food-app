@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+defaults:
+  run:
+    working-directory: client
+
 jobs:
   test:
     timeout-minutes: 15
@@ -13,8 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          working-directory: client
 
       - uses: actions/setup-node@v4
         with:
