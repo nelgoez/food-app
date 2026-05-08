@@ -11,8 +11,8 @@ function Home({ hasResults }) {
   }
 
   return (
-    <div className={`home ${hasResults ? 'has-results' : ''}`}>
-      <section className={`home-hero ${hasResults ? 'collapsed' : ''}`}>
+    <div className={`home ${hasResults && showSearch ? 'has-results' : ''}`}>
+      <section className={`home-hero ${hasResults && showSearch ? 'collapsed' : ''}`}>
         <div className='hero-content'>
           <h1 className='hero-title'>Recipe Finder</h1>
           <p className='hero-subtitle'>
