@@ -14,8 +14,9 @@ const Searcher = function (props) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    props.getRecipes(state.name)
-    setState('')
+    if (state.name.trim()) {
+      props.getRecipes(state.name.trim())
+    }
   }
 
   return (
@@ -31,11 +32,11 @@ const Searcher = function (props) {
               value={state.name}
               onChange={(e) => handleChange(e)}
             />
-            <button id='btn' type="submit" href='#'>BUSCAR</button>
+            <button id='btn' type="submit">BUSCAR</button>
         </form>
       </div>
       <div className='results'>
-          {props.recipes && props.recipes.map(recipe => <Recipe recipe={recipe} />)}
+          {props.recipes && props.recipes.map((recipe, i) => <Recipe key={recipe.id || i} recipe={recipe} />)}
       </div>
     </div>
   )

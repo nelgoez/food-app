@@ -39,6 +39,12 @@
   padding: 0 15px;
   border-radius: 10px 0 0 10px;
   outline: none;
+  caret-color: #ffd866;
+}
+
+.form-container input#name:focus {
+  border-color: #ffd866;
+  box-shadow: inset 0 0 0 1px #ffd866;
 }
 
 .form-container input#name::placeholder {
