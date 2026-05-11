@@ -14,12 +14,12 @@ function Home({ hasResults }) {
     <div className={`home ${hasResults && showSearch ? 'has-results' : ''}`}>
       <section className={`home-hero ${hasResults && showSearch ? 'collapsed' : ''}`}>
         <div className='hero-content'>
-          <h1 className='hero-title'>Recipe Finder</h1>
+          <h1 className='hero-title' data-testid="hero-title">Recipe Finder</h1>
           <p className='hero-subtitle'>
             Discover thousands of recipes from around the world<br />
             Search by ingredients, explore diet types, and save your favorites
           </p>
-          <button className='hero-cta' onClick={handleStart}>
+          <button className='hero-cta' onClick={handleStart} data-testid="hero-cta">
             Start Cooking →
           </button>
         </div>

@@ -5,7 +5,7 @@ import './Recipe.css'
 
 export default function Recipe({ recipe, onClose }) {
     return (
-        <div className='hero-section'>
+        <div className='hero-section' data-testid="recipe-card">
             <div key={recipe.id} className='card-item'>
                 <div className="card-background" >
                     <img src={recipe.image} alt='imagen no encontrada' />
@@ -16,7 +16,7 @@ export default function Recipe({ recipe, onClose }) {
                         <h4>Diets: </h4>
                         {recipe.diets && recipe.diets.length ? recipe.diets.map((d, i) => <div key={i} className='card-text'>{d}</div>) : <div className='card-text'>ALL</div>}
                         <div className='actions'>
-                            <Link to={`/recipe/${recipe.id}`} className='read'>Read</Link>
+                            <Link to={`/recipe/${recipe.id}`} className='read' data-testid="recipe-read-link">Read</Link>
                         </div>
                     </div>
                 </div>

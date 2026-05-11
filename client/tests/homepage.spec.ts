@@ -3,35 +3,35 @@ import { test, expect } from '@playwright/test'
 test.describe('Landing Page', () => {
   test('shows the hero title and CTA', async ({ page }) => {
     await page.goto('/')
-    const title = page.locator('.hero-title')
+    const title = page.locator('[data-testid="hero-title"]')
     await expect(title).toBeVisible()
     await expect(title).toContainText('Recipe Finder')
-    const cta = page.locator('.hero-cta')
+    const cta = page.locator('[data-testid="hero-cta"]')
     await expect(cta).toBeVisible()
     await expect(cta).toContainText('Start Cooking')
   })
 
   test('Start Cooking reveals the search bar', async ({ page }) => {
     await page.goto('/')
-    await page.locator('.hero-cta').click()
-    await expect(page.locator('input#name')).toBeVisible()
-    await expect(page.locator('button#btn')).toBeVisible()
+    await page.locator('[data-testid="hero-cta"]').click()
+    await expect(page.locator('[data-testid="search-input"]')).toBeVisible()
+    await expect(page.locator('[data-testid="search-button"]')).toBeVisible()
   })
 })
 
 test.describe('Search Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await page.locator('.hero-cta').click()
+    await page.locator('[data-testid="hero-cta"]').click()
   })
 
   test('search input is visible', async ({ page }) => {
-    const input = page.locator('input#name')
+    const input = page.locator('[data-testid="search-input"]')
     await expect(input).toBeVisible()
   })
 
   test('search button is visible', async ({ page }) => {
-    const btn = page.locator('button#btn')
+    const btn = page.locator('[data-testid="search-button"]')
     await expect(btn).toBeVisible()
   })
 

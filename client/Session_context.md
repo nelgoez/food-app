@@ -1,83 +1,83 @@
 # Session Context — Food App
 
-> Session date: 2026-05-07
+> Session date: 2026-05-11
 > Agent: opencode (Senior QA & Full-Stack Engineer)
 
 ## Summary
+Integration coherence & QA gap closure session. Aligned frontend with Vercel backend, fixed runtime bugs, closed the gap between documented specs and actual code, added 40+ tests, and leveled up the project to match diploma-tracking-sys template standards.
 
-Full modernization of a Henry Bootcamp CRA project: dependency upgrades, bug fixes,
-CSS overhaul for contrast/readability, Playwright QA suite, and agent docs.
+## Production Deployments
+| Component | URL | Status |
+|-----------|-----|--------|
+| Frontend | https://app-recetas.vercel.app | Live |
+| Backend | https://food-app-back-zeta.vercel.app | Live (pending redeploy for root route) |
 
-## Changes Made
+## Changes Made (Session 2026-05-11)
 
-### 1. Critical Bug Fixes
-- `App.js` — fixed syntax error: missing space `'/'component=` → `'/' component=`
-- `react-scripts@^0.0.0` → `react-scripts@^5.0.1` (build tool was broken)
-- `App.test.js` — fixed default test that searched for nonexistent "learn react" text
+### 1. Integration Alignment
+- `actions/index.js` — hardcoded Heroku URL → Vercel backend
+- `backend/const.js` — fixed `let = {}` syntax error
+- Backend root route — changed `res.send()` to `res.json()` (needs Vercel redeploy)
 
-### 2. Dependency Upgrades
-| Package | Before | After |
-|---------|--------|-------|
-| react | ^17.0.2 | ^18.3.0 |
-| react-dom | ^17.0.1 | ^18.3.0 |
-| react-scripts | ^0.0.0 | ^5.0.1 |
-| @testing-library/react | ^11.2.1 | ^14.2.0 |
-| @testing-library/user-event | ^12.2.2 | ^14.5.0 |
-| redux | ^4.0.5 | ^4.2.1 |
-| redux-thunk | ^2.3.0 | ^2.4.2 |
-| web-vitals | ^0.2.4 | ^2.1.4 |
+### 2. Bug Fixes
+- **AddRecipe.jsx** — `handleChange()` was reading `e.target.prop` (nonexistent on inputs); state never updated
+- **AddRecipe.jsx** — `handleSubmit()` had inverted `isFormInvalid()`: submitted when form had errors; `e.preventDefault()` was outside the ternary
 
-### 3. CSS Overhaul (all 9 files)
-- **`index.css`** — removed external wallpaper (slow/unreliable), solid dark bg `#1a1a2e`
-- **`App.css`** — clean dark header with `#f0c040` accent, flex layout
-- **`Navbar.css`** — dark gradient nav `#16213e → #0f3460`, gold hover `#ffd866`, active state
-- **`Recipe.css`** — dark card gradient, gold titles, red accent buttons, image sizing, hover glow
-- **`RecipeDetails.css`** — dark detail card, gold title, readable body text
-- **`Searcher.css`** — clean search bar with dark input, red search button, results grid
-- **`Diets.css`** — dark rounded cards, red bullet points, gold hover border
-- **`Button.css`** — centered landing button, red/orange gradient, smooth hover
-- **`AddRecipe.css`** — dark form fields, gold labels, red submit button, error styling
+### 3. Test Infrastructure
+| Metric | Before | After |
+|--------|--------|-------|
+| Jest suites | 1 | **7** |
+| Jest tests | 1 | **25** |
+| Playwright tests | 13 | **40** |
+| Backend unit (mocked) | 0 | **2** |
+| **Total** | **14** | **67** |
 
-### 4. QA Infrastructure
-- **Playwright** installed with Chromium
-- 3 test suites (homepage, responsive, visual) — 13 tests total
-- GitHub Actions workflow for CI
-- `.context/qa-strategy.md`
+### 4. New Test Files
+- `tests/api.spec.ts` — 5 Playwright backend contract tests (Vercel)
+- `Searcher.test.js` — 4 tests (input, loading, hint, empty)
+- `Diets.test.js` — 4 tests (title, loading, empty, cards)
+- `Recipe.test.js` — 5 tests (title, diets, image, link, ALL fallback)
+- `NavBar.test.js` — 3 tests (links, hrefs, header)
+- `AddRecipe.test.js` — 4 tests (fields, submit, validation, input)
+- `RecipeDetails.test.js` — 4 tests (loading, title, image, summary)
+- `backend/controllers/recipes.spec.js` — 3 mocked Spoonacular tests
+- `backend/controllers/types.spec.js` — 1 diet types test
 
-### 5. Backend Migration (Vercel)
-- Express app wrapped as Vercel serverless function (`api/index.js`)
-- `vercel.json` configured for `@vercel/node` runtime
-- DB connection made optional — works without PostgreSQL in proxy-only mode
-- CORS updated to use env variable (`FRONTEND_URL`)
-- Frontend API URL now configurable via `REACT_APP_API_URL`
-- Backend repo: `food-app-back/`
+### 5. Root-Level Files (per template standard)
+- `CLAUDE.md` — project memory with env URLs, commands, session log
+- `AGENTS.md` — full agent guidelines for the project
+- `opencode.json` — MCP server config (Playwright, DevTools, Context7, Vercel)
+- `.editorconfig` — cross-editor consistency
+- `.prettierrc` — formatting rules
+- `.gitignore` — root-level ignore rules
 
-### 6. Documentation
-- `README.md` — updated with stack, commands, QA
-- `.context/agent-integration.md`
-- `.context/qa-strategy.md`
-- `Session_context.md` (this file)
+### 6. .context Directory Expansion
+- `PRD/executive-summary.md`, `PRD/user-journeys.md`
+- `SRS/functional-specs.md`
+- `PBI/modules/recipe-search/test-specs/ROADMAP.md`
 
-## Roadmap / Backlog
+### 7. data-testid Attributes Added
+| Component | Elements |
+|-----------|----------|
+| Home.jsx | `hero-title`, `hero-cta` |
+| Searcher.jsx | `search-input`, `search-button`, `search-form`, `search-results`, `search-loading`, `search-hint`, `search-empty` |
+| Recipe.jsx | `recipe-card`, `recipe-read-link` |
+| Diets.jsx | `diets-loading`, `diets-empty`, `diets-grid`, `diet-card`, `diet-name-*` |
 
-### UI Improvements (pending)
-- Error/empty state messages when search returns no results
-- Loading spinners while API requests are in flight
-- Toast/alert component for API errors (e.g., backend unreachable)
-- "No diets available" fallback text on `/types`
-- Better cursor/placeholder visibility on search input
-- Handle `setState('')` bug in Searcher (was overwriting object state with string)
+### 8. CI Pipeline Updated
+- `.github/workflows/playwright.yml` renamed to CI
+- Now runs: Jest unit → Build → Playwright E2E (in sequence)
 
-### Test Expansion (pending)
-- **Frontend unit tests**: Jest + React Testing Library for components (Searcher, Diets, Recipe, RecipeDetails, AddRecipe, NavBar)
-- **Frontend E2E**: Playwright tests for happy paths + error states (empty results, API failure)
-- **Backend unit tests**: Mocha + Chai for Express routes (mock Spoonacular)
-- **Backend E2E**: Playwright / Supertest against deployed backend endpoints
-- **Integration**: Playwright tests that hit the real deployed backend from the frontend
-- Add `data-testid` attributes to key elements for test resilience
+### 9. Final Test Results
+- **Jest**: 7 suites, 25 tests — **all passed**
+- **Playwright**: 40 tests (20 Chromium + 20 Mobile) — **all passed**
+- **Backend unit**: 2 suites, 4 tests — **all passed**
 
-### CI Pipeline (pending)
-- Vercel Preview Deployments for PR branches
-- Run Playwright against Preview URL before merging to `main`
-- Separate test environment (`.env.test` or Vercel Preview env vars)
-- GitHub Actions workflow triggers: lint → unit → build → E2E (Preview) → deploy
+## Backend Pending
+- Root route fix (`res.json`) committed locally — needs push & Vercel redeploy to take effect
+
+## Remaining Backlog
+- Toast/alert component for API errors
+- Playwright tests using data-testid (still use class selectors in some places)
+- Vercel Preview Deployments in CI
+- AddRecipe, RecipeDetails, NavBar full error-state E2E tests

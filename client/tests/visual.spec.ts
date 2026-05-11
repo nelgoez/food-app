@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Visual & Accessibility', () => {
   test('hero CTA has visible text', async ({ page }) => {
     await page.goto('/')
-    const btn = page.locator('.hero-cta')
+    const btn = page.locator('[data-testid="hero-cta"]')
     await expect(btn).toBeVisible()
     const text = await btn.textContent()
     expect(text).toBeTruthy()

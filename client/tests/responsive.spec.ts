@@ -11,8 +11,8 @@ test.describe('Responsive Layout', () => {
   test('search input is usable on mobile after reveal', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto('/')
-    await page.locator('.hero-cta').click()
-    const input = page.locator('input#name')
+    await page.locator('[data-testid="hero-cta"]').click()
+    const input = page.locator('[data-testid="search-input"]')
     await expect(input).toBeVisible()
     await input.fill('chicken')
     await expect(input).toHaveValue('chicken')
@@ -21,7 +21,7 @@ test.describe('Responsive Layout', () => {
   test('hero title is centered on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
-    const title = page.locator('.hero-title')
+    const title = page.locator('[data-testid="hero-title"]')
     await expect(title).toBeVisible()
     const box = await title.boundingBox()
     expect(box).not.toBeNull()

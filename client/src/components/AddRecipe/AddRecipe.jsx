@@ -39,23 +39,22 @@ export function AddRecipe(props) {
 
 
     function handleChange(e) {
-        const target = e.target
-        const { prop, value } = target;
-        setRecipe({ [prop]: [value] });
-        const errors = {
-            required: { ...recipe.errors.required, [prop]: false }
-        };
+        const { name, value } = e.target;
         setRecipe({
-            [prop]: value,
-            errors: { ...recipe.errors, ...errors }
+            ...recipe,
+            [name]: value,
+            errors: {
+                ...recipe.errors,
+                required: { ...recipe.errors.required, [name]: false }
+            }
         });
     }
 
     function handleSubmit(e) {
-        isFormInvalid() ?
+        e.preventDefault();
+        !isFormInvalid() ?
             props.addRecipe(recipe) :
-            alert('Fill the fields')
-            e.preventDefault();
+            alert('Fill the fields');
     }
 
 

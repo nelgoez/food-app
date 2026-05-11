@@ -5,7 +5,7 @@ export const GET_RECIPE_DETAILS = 'GET_RECIPE_DETAILS';
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const GET_TYPES = 'GET_TYPES';
 export const SET_LOADING = 'SET_LOADING';
-const URL = process.env.REACT_APP_API_URL || 'https://api-food-app.herokuapp.com'
+const URL = process.env.REACT_APP_API_URL || 'https://food-app-back-zeta.vercel.app'
 const RECIPES_URL = '/recipes'
 const TYPES_URL = '/types'
 

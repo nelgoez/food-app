@@ -9,10 +9,18 @@ Recipe search & management app built with React, Redux, and Node.
 ## Stack
 
 - **Frontend:** React 18, Redux, React Router v5, Axios
-- **Backend:** Node + Express + Sequelize (external API)
+- **Backend:** Node + Express + Sequelize (Spoonacular API)
 - **Styling:** Plain CSS
 - **Build:** Create React App (react-scripts 5)
-- **QA:** Playwright + GitHub Actions
+- **QA:** Playwright (E2E) + Jest/RTL (unit) + GitHub Actions
+- **Deployment:** Frontend → Vercel, Backend → Vercel (serverless)
+
+## Production
+
+| Component | URL |
+|-----------|-----|
+| Frontend | https://app-recetas.vercel.app |
+| Backend | https://food-app-back-zeta.vercel.app |
 
 ## Getting Started
 
@@ -30,10 +38,11 @@ Opens at [http://localhost:3000](http://localhost:3000).
 |---------|-------------|
 | `npm start` | Start dev server |
 | `npm run build` | Build for production |
-| `npm test` | Run unit tests (Jest) |
-| `npx playwright test` | Run E2E tests |
+| `npm test` | Run unit tests (Jest) — 14 tests |
+| `npx playwright test` | Run E2E tests — 40 tests |
 
 ## QA
 
-Playwright tests cover landing page, search, responsive layout, and visual
-consistency. See `.github/workflows/playwright.yml` and `.context/qa-strategy.md`.
+Playwright tests cover landing page, search, responsive layout, API contract,
+and visual consistency. Jest + React Testing Library covers component unit tests.
+See `.github/workflows/playwright.yml`, `.context/qa-strategy.md`, and `tests/`.

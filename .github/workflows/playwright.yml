@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: CI — Lint, Unit, Build, E2E
 
 on:
   push:
@@ -27,16 +27,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Chromium
-        run: npx playwright install chromium
+      - name: Run Jest unit tests
+        run: npm test -- --watchAll=false --no-cache
 
       - name: Build project
         run: npm run build
 
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+
       - name: Start server
         run: npx serve -s build -l 3000 &
 
-      - name: Run Playwright tests
+      - name: Run Playwright E2E tests
         run: npx playwright test
         env:
           BASE_URL: http://localhost:3000

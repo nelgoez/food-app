@@ -13,22 +13,22 @@ export function Diets({ diets, loading, getDiets }) {
         <div className='diets-page'>
             <h2 className='diets-title'>Diet Types</h2>
             {loading ? (
-                <div className="state-msg">
+                <div className="state-msg" data-testid="diets-loading">
                     <div className="spinner" />
                     <p>Loading diets...</p>
                 </div>
             ) : !diets || diets.length === 0 ? (
-                <div className="state-msg">
+                <div className="state-msg" data-testid="diets-empty">
                     <p className="empty">No diets available</p>
                     <p className="hint">The diet list could not be loaded. Try again later.</p>
                 </div>
             ) : (
-                <div className='diet-grid'>
+                <div className='diet-grid' data-testid="diets-grid">
                     {diets.map((d, i) => {
                         let { diet } = d
                         return (
-                            <div key={i} className='diet-card'>
-                                <span className='diet-name'>{diet}</span>
+                            <div key={i} className='diet-card' data-testid="diet-card">
+                                <span className='diet-name' data-testid={`diet-name-${diet}`}>{diet}</span>
                             </div>
                         )
                     })}
