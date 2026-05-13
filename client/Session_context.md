@@ -1,46 +1,5 @@
 # Session Context — Food App
 
-## Session 2026-05-12 — Demo Screening & Test Expansion
-
-> Agent: opencode (Senior QA & Full-Stack Engineer)
-
-### Summary
-Expanded test coverage across all layers (Jest +16, Playwright +6, Backend +2). Demo coded one test of each type, applied the visual.spec.ts alt/role assertion improvement, performed light rewrites on every test file, updated agent context files, committed, tested all, and pushed. Validated Vercel deployment + GitHub Actions CI via browser.
-
-### Test Count Changes
-| Metric | Before | After |
-|--------|--------|-------|
-| Jest tests | 25 | **31** |
-| Playwright tests | 40 | **46** |
-| Backend unit (mocked) | 4 | **6** |
-| **Total** | **69** | **83** |
-
-### Changes Made
-- **Searcher.test.js** — added error state test (+1)
-- **Diets.test.js** — added error state test (+1)
-- **Recipe.test.js** — added fallback image test (+1)
-- **AddRecipe.test.js** — added validation error test (+1)
-- **RecipeDetails.test.js** — added error state test (+1)
-- **NavBar.test.js** — added aria-labels test (+1)
-- **App.test.js** — strengthened nav link assertion
-- **visual.spec.ts** — improved alt/role assertion with descriptive error message
-- **homepage.spec.ts** — added search results visibility test (+1)
-- **responsive.spec.ts** — added tablet viewport test (+1)
-- **api.spec.ts** — added invalid id error test (+1)
-- **recipes.spec.js** — added API error handling test (+1)
-- **types.spec.js** — added error handling test (+1)
-- **AGENTS.md** — updated test counts
-- **Session_context.md** — added this session entry
-
-### Final Test Results
-- **Jest**: 7 suites, 31 tests — **all passed**
-- **Playwright**: 46 tests — **all passed**
-- **Backend unit**: 4 suites, 6 tests — **all passed**
-
----
-
-# Session Context — Food App
-
 > Session date: 2026-05-11
 > Agent: opencode (Senior QA & Full-Stack Engineer)
 
