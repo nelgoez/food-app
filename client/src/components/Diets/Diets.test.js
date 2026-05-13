@@ -36,4 +36,9 @@ describe('Diets component', () => {
     expect(screen.getByText('Vegan')).toBeInTheDocument();
     expect(screen.getByText('Gluten Free')).toBeInTheDocument();
   })
+
+  test('shows hint text when no diets', () => {
+    renderWithProviders(<Diets diets={[]} loading={false} getDiets={() => {}} />);
+    expect(screen.getByText(/Try again later/i)).toBeInTheDocument();
+  })
 })

@@ -14,4 +14,6 @@ test('app renders without crashing', () => {
   );
   const nav = document.querySelector('nav');
   expect(nav).toBeInTheDocument();
+  const links = nav.querySelectorAll('a');
+  expect(links.length).toBeGreaterThanOrEqual(2);
 });

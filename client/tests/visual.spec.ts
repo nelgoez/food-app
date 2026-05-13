@@ -16,10 +16,9 @@ test.describe('Visual & Accessibility', () => {
     for (let i = 0; i < count; i++) {
       const img = images.nth(i)
       const alt = await img.getAttribute('alt')
-      if (alt === null) {
-        const role = await img.getAttribute('role')
-        expect(role).toBe('presentation')
-      }
+      const role = await img.getAttribute('role')
+      const isValid = (alt !== null || role === 'presentation');
+      expect(isValid, `Error en imagen ${i}: No tiene 'alt' ni 'role="presentation"'`).toBe(true);
     }
   })
 

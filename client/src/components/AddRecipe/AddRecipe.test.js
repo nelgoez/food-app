@@ -49,4 +49,9 @@ describe('AddRecipe component', () => {
     fireEvent.change(titleInput, { target: { name: 'title', value: 'My New Recipe' } });
     expect(titleInput.value).toBe('My New Recipe');
   })
+
+  test('shows validation errors when form is invalid', () => {
+    renderWithProviders(<AddRecipe />);
+    expect(screen.getByText(/Field title is/i)).toBeInTheDocument();
+  })
 })

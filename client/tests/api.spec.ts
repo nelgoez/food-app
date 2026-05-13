@@ -42,4 +42,9 @@ test.describe('Backend API Health', () => {
     const res = await request.get(`${API_URL}/recipes?name=`)
     expect(res.ok()).toBeTruthy()
   })
+
+  test('GET /recipes/:id with invalid id returns error', async ({ request }) => {
+    const res = await request.get(`${API_URL}/recipes/0`)
+    expect(res.ok()).toBeFalsy()
+  })
 })

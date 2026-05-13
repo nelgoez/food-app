@@ -40,5 +40,6 @@ describe('Searcher component', () => {
     renderWithProviders(<Searcher />, {
       initialState: { recipes: [], loading: false, recipeDetails: {} }
     });
+    expect(screen.getByTestId('search-results')).toBeInTheDocument();
   })
 })

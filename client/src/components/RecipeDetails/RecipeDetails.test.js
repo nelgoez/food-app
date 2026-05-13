@@ -68,4 +68,18 @@ describe('RecipeDetails component', () => {
     );
     expect(screen.getByText(/Resumen/i)).toBeInTheDocument();
   })
+
+  test('handles recipe without image gracefully', () => {
+    const noImage = { ...mockRecipe, image: '' };
+    render(
+      <BrowserRouter>
+        <RecipeDetails
+          match={{ params: { id: '123' } }}
+          getRecipeDetails={() => {}}
+          recipe={noImage}
+        />
+      </BrowserRouter>
+    );
+    expect(screen.getByText('Test Recipe')).toBeInTheDocument();
+  })
 })

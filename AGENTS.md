@@ -51,18 +51,21 @@ food-app-back/             # Backend (sibling repo)
 
 ## Test Structure
 
-### Jest Unit (14 tests)
+### Jest Unit (30 tests)
 | Suite | File | Count |
 |-------|------|-------|
 | App smoke | `App.test.js` | 1 |
 | Searcher | `Searcher.test.js` | 4 |
-| Diets | `Diets.test.js` | 4 |
-| Recipe | `Recipe.test.js` | 5 |
+| Diets | `Diets.test.js` | 5 |
+| Recipe | `Recipe.test.js` | 6 |
+| AddRecipe | `AddRecipe.test.js` | 5 |
+| RecipeDetails | `RecipeDetails.test.js` | 5 |
+| NavBar | `NavBar.test.js` | 4 |
 
-### Playwright E2E (40 tests)
+### Playwright E2E (46 tests)
 | Suite | File | Count |
 |-------|------|-------|
-| Backend API | `api.spec.ts` | 5 |
+| Backend API | `api.spec.ts` | 6 |
 | Homepage | `homepage.spec.ts` | 9 |
 | Responsive | `responsive.spec.ts` | 5 |
 | Visual | `visual.spec.ts` | 3 |

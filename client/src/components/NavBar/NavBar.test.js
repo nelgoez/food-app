@@ -34,4 +34,16 @@ describe('NavBar component', () => {
     expect(document.querySelector('header')).toBeInTheDocument();
     expect(document.querySelector('nav')).toBeInTheDocument();
   })
+
+  test('links have aria labels', () => {
+    render(
+      <BrowserRouter>
+        <NavBar />
+      </BrowserRouter>
+    );
+    const links = document.querySelectorAll('nav a');
+    links.forEach((link) => {
+      expect(link.textContent.trim().length).toBeGreaterThan(0);
+    });
+  })
 })

@@ -42,6 +42,13 @@ test.describe('Search Page', () => {
     const count = await links.count()
     expect(count).toBeGreaterThanOrEqual(2)
   })
+
+  test('search results area appears after typing and submitting', async ({ page }) => {
+    const input = page.locator('[data-testid="search-input"]')
+    await input.fill('chicken')
+    await page.locator('[data-testid="search-button"]').click()
+    await expect(page.locator('[data-testid="search-results"]')).toBeVisible({ timeout: 10000 })
+  })
 })
 
 test.describe('Other Routes', () => {

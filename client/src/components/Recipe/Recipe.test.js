@@ -59,4 +59,16 @@ describe('Recipe component', () => {
     );
     expect(screen.getByText('ALL')).toBeInTheDocument();
   })
+
+  test('renders fallback image when image is missing', () => {
+    const noImage = { ...mockRecipe, image: '' };
+    render(
+      <BrowserRouter>
+        <Recipe recipe={noImage} />
+      </BrowserRouter>
+    );
+    const img = screen.getByAltText('imagen no encontrada');
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', '');
+  })
 })

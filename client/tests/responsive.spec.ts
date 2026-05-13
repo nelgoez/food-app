@@ -39,4 +39,14 @@ test.describe('Responsive Layout', () => {
     expect(box).not.toBeNull()
     expect(box!.width).toBeLessThan(450)
   })
+
+  test('navbar is visible on tablet viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 1024 })
+    await page.goto('/')
+    const nav = page.locator('nav')
+    await expect(nav).toBeVisible()
+    const links = nav.locator('a')
+    const count = await links.count()
+    expect(count).toBeGreaterThanOrEqual(2)
+  })
 })
