@@ -66,7 +66,7 @@ describe('RecipeDetails component', () => {
         />
       </BrowserRouter>
     );
-    expect(screen.getByText(/Resumen/i)).toBeInTheDocument();
+    expect(screen.getByText(/Summary/i)).toBeInTheDocument();
   })
 
   test('handles recipe without image gracefully', () => {

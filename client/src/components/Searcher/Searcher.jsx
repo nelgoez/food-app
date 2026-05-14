@@ -33,7 +33,7 @@ const Searcher = function (props) {
     if (!searched) {
       return (
         <div className="state-msg" data-testid="search-hint">
-          <p className="hint">Type an ingredient above and hit BUSCAR to find recipes</p>
+          <p className="hint">Type an ingredient above and hit SEARCH to find recipes</p>
         </div>
       )
     }
@@ -66,7 +66,7 @@ const Searcher = function (props) {
               onChange={(e) => handleChange(e)}
               data-testid="search-input"
             />
-            <button id='btn' type="submit" data-testid="search-button">BUSCAR</button>
+            <button id='btn' type="submit" data-testid="search-button">SEARCH</button>
         </form>
       </div>
       <div className='results' data-testid="search-results">

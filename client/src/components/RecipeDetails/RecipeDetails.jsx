@@ -27,11 +27,11 @@ export function RecipeDetails({ getRecipeDetails, match, recipe }) {
       <div className="card u-clearfix">
         <div className="card-body">
           <h2 className="card-title">{recipe.title}</h2>
-          <h4>Resumen : </h4>
+          <h4>Summary : </h4>
           <span className="card-description subtle">{recipe.summary ? ReactHtmlParser(recipe.summary) : ''}</span>
           {recipe.instructions && (
             <>
-              <h3>Paso a Paso</h3>
+              <h3>Step By Step</h3>
               <p className="card-instructions">{ReactHtmlParser(recipe.instructions)}</p>
             </>
           )}

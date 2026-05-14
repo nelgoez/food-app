@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
@@ -21,7 +21,7 @@ describe('Searcher component', () => {
   test('renders search input and button', () => {
     renderWithProviders(<Searcher />);
     expect(screen.getByPlaceholderText('Search by ingredient...')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /BUSCAR/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /SEARCH/i })).toBeInTheDocument();
   })
 
   test('shows hint before any search', () => {
