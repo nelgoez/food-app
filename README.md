@@ -22,6 +22,11 @@ Recipe search & management app built with React, Redux, and Node.
 | Frontend | https://app-recetas.vercel.app |
 | Backend | https://food-app-back-zeta.vercel.app |
 
+## Staging
+|-----------|-----|
+| Frontend | https://app-recetas.vercel.app |
+| Backend | https://food-app-back-zeta.vercel.app |
+
 ## Getting Started
 
 ```bash
